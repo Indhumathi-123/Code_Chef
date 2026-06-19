@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            
+            // Choice 1: Transport everyone strictly using cars
+            int carsOnly = ((n + 3) / 4) * y; 
+            
+            // Choice 2: Transport everyone strictly using buses
+            int busesOnly = ((n + 99) / 100) * x;
+            
+            // Choice 3: Use full buses first, then cars for the leftover people
+            int fullBuses = n / 100;
+            int leftoverPeople = n % 100;
+            int leftoverCars = (leftoverPeople + 3) / 4;
+            int mixedOption = (fullBuses * x) + (leftoverCars * y);
+            
+            // The answer is the absolute minimum of these three choices
+            int minSmoke = Math.min(carsOnly, Math.min(busesOnly, mixedOption));
+            
+            System.out.println(minSmoke);
+        }
+        sc.close();
+    }
+}
