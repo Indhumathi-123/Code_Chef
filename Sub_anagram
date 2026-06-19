@@ -1,0 +1,35 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        if (!sc.hasNextInt()) return;
+        int n = sc.nextInt();
+        int[] minFreq = new int[26];
+        Arrays.fill(minFreq, Integer.MAX_VALUE);
+        for (int i = 0; i < n; i++) {
+            String s = sc.next();
+            int[] currentFreq = new int[26];
+            for (char c : s.toCharArray()) {
+                currentFreq[c - 'a']++;
+            }
+            for (int j = 0; j < 26; j++) {
+                minFreq[j] = Math.min(minFreq[j], currentFreq[j]);
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < 26; i++) {
+            for (int j = 0; j < minFreq[i]; j++) {
+                result.append((char) ('a' + i));
+            }
+        }
+        if (result.length() == 0) {
+            System.out.println("no such string");
+        } else {
+            System.out.println(result.toString());
+        }
+        
+        sc.close();
+    }
+}
