@@ -1,0 +1,12 @@
+S=input("Enter the string:")
+T=input("Enter the second string:")
+m=int(input("Enter integer value of no of shift:"))
+if(len(S) != len(T)):
+   print("two string have same length")
+else:
+    m = m % len(S)
+    right=S[-m:]+S[:-m]
+    if(right==T):
+        print("YES")
+    else:
+        print("NO")
